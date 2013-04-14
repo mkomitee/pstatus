@@ -9,7 +9,13 @@ by ``os.system``, ``os.wait``, ``os.waitpid``, as well as ``subprocess.call``,
 It exports one function ``split`` which extracts an exit code, a signal number,
 a flag indicating whether or not the process left a core dump behind.
 
-For example, with ``os.system``:
+``API`` documentation is available at ReadTheDocs_.
+
+
+Usage
+-----
+
+With ``os.system``:
 
 >>> split(os.system('true'))
 Status(exit=0, signal=None, core=False)
@@ -24,7 +30,7 @@ Using ``os.spawnlp`` and ``os.kill`` to demonstrate extraction of signals:
 >>> split(code)
 Status(exit=None, signal=15, core=False)
 
-And now with ``subprocess.call``:
+With ``subprocess.call``:
 
 >>> import subprocess
 >>> split(subprocess.call(['true']), subprocess=True)
@@ -39,3 +45,6 @@ signals:
 >>> p.terminate()
 >>> split(p.wait(), subprocess=True)
 Status(exit=None, signal=15, core=None)
+
+
+.. _ReadTheDocs: https://pstatus.readthedocs.org/en/latest/
