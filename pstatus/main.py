@@ -1,36 +1,9 @@
-'''
-pstatus: Status code helper utility
-===================================
+from __future__ import absolute_import
 
-pstatus is can be used to extract meaning from process status codes as returned
-by ``os.system``, ``os.wait``, ``os.waitpid``, as well as ``subprocess.call``,
-``subprocess.CalledProcessError.returncode``, ``subprocess.Popen.call``,
-``subprocess.Popen.wait``, and ``subprocess.Popen.returncode``.
-
-It exports one function ``split`` which extracts an exit code, a signal number,
-a flag indicating whether or not the process left a core dump behind.
-'''
-from collections import namedtuple
 import os
+from .models import Status
 
-__version__ = '1.0.0'
-
-__all__ = ['Status', 'split']
-
-
-class Status(namedtuple('Status', ['exit', 'signal', 'core'])):
-    """
-    This object may be accessed as either a ``tuple`` of ``(exit, signal,
-    core)`` or via the attributes ``exit``, ``signal``, and ``core``.
-    Additionally another attribute ``ok`` is defined which indicates whether or
-    not the process exited successfully.
-    """
-    @property
-    def ok(self):
-        """
-        Returns whether or not the process exited successfully
-        """
-        return (self.exit == 0)
+__all__ = ['split']
 
 
 def split(status, subprocess=False):
@@ -103,7 +76,3 @@ def split(status, subprocess=False):
             code = None
         core = os.WCOREDUMP(status)
     return Status(code, signal, core)
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()

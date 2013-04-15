@@ -10,7 +10,7 @@ setup(
     author="Michael Komitee",
     author_email="mkomitee@gmail.com",
     url='https://github.com/mkomitee/pstatus',
-    py_modules=['pstatus'],
+    packages=['pstatus'],
     package_data={'': ['LICENSE', 'AUTHORS']},
     include_package_data=True,
     license=open('LICENSE').read(),
