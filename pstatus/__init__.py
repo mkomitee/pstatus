@@ -18,6 +18,6 @@ from .models import Status
 from .main import split
 from . import os
 
-__version__ = '1.1.0'
+__version__ = '1.1.2'
 
 __all__ = ['split']
